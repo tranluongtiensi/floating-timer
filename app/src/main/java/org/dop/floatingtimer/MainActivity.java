@@ -62,6 +62,13 @@ public class MainActivity extends AppCompatActivity {
                 String mInputMinutes = mMinutesEditTxt.getText().toString();
                 String mInputSeconds = mSecondsEditTxt.getText().toString();
 
+                if(mInputSeconds.length() == 0){
+                    mInputSeconds = String.valueOf(0);
+                }
+                if(mInputMinutes.length() == 0){
+                    mInputMinutes = String.valueOf(0);
+                }
+
                 Intent intent = new Intent(MainActivity.this, FloatingViewService.class);
                 intent.putExtra("minutes", mInputMinutes);
                 intent.putExtra("seconds", mInputSeconds);
