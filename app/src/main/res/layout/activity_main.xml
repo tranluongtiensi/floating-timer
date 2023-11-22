@@ -55,10 +55,13 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
+                    android:id="@+id/minutes_edit_text"
                     android:inputType="number"
                     android:paddingTop="0dp"
                     android:paddingBottom="0dp"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:maxLength="2"
+                    android:hint="0"/>
             </LinearLayout>
 
             <LinearLayout
@@ -79,10 +82,13 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
+                    android:id="@+id/seconds_edit_text"
                     android:inputType="number"
                     android:paddingTop="0dp"
                     android:paddingBottom="0dp"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:maxLength="2"
+                    android:hint="0"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -99,7 +105,9 @@
 
                 <CheckBox
                     android:layout_width="wrap_content"
-                    android:layout_height="35dp" />
+                    android:layout_height="35dp"
+                    android:id="@+id/vibration_check_box"
+                    app:buttonTint="@color/color_selector_checkbox"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -115,12 +123,14 @@
 
                 <CheckBox
                     android:layout_width="wrap_content"
-                    android:layout_height="35dp" />
+                    android:layout_height="35dp"
+                    android:id="@+id/sound_check_box"
+                    app:buttonTint="@color/color_selector_checkbox"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sound" />
+                    android:text="Sound"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -128,6 +138,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/create_countdown_btn"
             android:layout_margin="15dp"
             android:text="Create"
             android:backgroundTint="@color/bluelight"/>
@@ -142,16 +153,11 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/create_stopwatch_btn"
             android:layout_margin="10dp"
             android:text="Create"
             android:backgroundTint="@color/bluelight"/>
     </LinearLayout>
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="20dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
