@@ -24,7 +24,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     EditText mMinutesEditTxt, mSecondsEditTxt;
-    Button mCreateCountdownBtn;
+    Button mCreateCountdownBtn, mCreateStopWatchBtn;
     Toolbar toolbar;
     private ActivityResultLauncher<Intent> requestOverlayPermissionLauncher;
     @Override
@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, FloatingViewService.class);
                 intent.putExtra("minutes", mInputMinutes);
                 intent.putExtra("seconds", mInputSeconds);
+                intent.putExtra("action", "countdown");
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     startForegroundService(intent);
                 } else {
@@ -80,6 +81,23 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        mCreateStopWatchBtn = findViewById(R.id.create_stopwatch_btn);
+        mCreateStopWatchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!Settings.canDrawOverlays(MainActivity.this)){
+                    getPermission();
+                }
+                Intent intent = new Intent(MainActivity.this, FloatingViewService.class);
+                intent.putExtra("action","stopwatch");
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+                    startForegroundService(intent);
+                } else {
+                    startService(intent);
+                }
+            }
+        });
+
 
 
     }
