@@ -1,9 +1,11 @@
 package org.dop.floatingtimer;
 
 
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 public class FloatingViewTouchListener implements View.OnTouchListener {
     private WindowManager.LayoutParams params;
@@ -46,7 +48,7 @@ public class FloatingViewTouchListener implements View.OnTouchListener {
                     if (counting) {
                         // Bắt đầu đếm tiếp
                         if (countdownTimer != null) {
-                            countdownTimer.onTick(countdownTimer.tosave);
+                            countdownTimer.resumeFromPause();
                             countdownTimer.start();
                         }
                     } else {

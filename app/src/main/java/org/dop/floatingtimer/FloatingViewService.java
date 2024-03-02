@@ -22,6 +22,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
 
@@ -43,6 +44,7 @@ public class FloatingViewService extends Service {
     TextView mTimeCountdown;
     TextView mTimeStopwatch;
     Handler handler;
+    private CustomCountdownTimer countdownTimer;
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -101,17 +103,13 @@ public class FloatingViewService extends Service {
                     countdownProBar.setMax((int) mStartTimerInMilis);
                     countdownProBar.setProgress((int) mStartTimerInMilis);
 
-                    handler = new Handler(Looper.getMainLooper());
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            CustomCountdownTimer countdownTimer = new CustomCountdownTimer(mStartTimerInMilis, 1000, mTimeCountdown, countdownProBar);
-                            //drag movement for widget
-                            FloatingViewTouchListener touchListener = new FloatingViewTouchListener(params, getmWindowManager(), countdownTimer);
-                            mFloatingView.setOnTouchListener(touchListener);
-                            countdownTimer.start();
-                        }
-                    },0);
+                    // nếu countdownTimer chưa được khởi tạo, tạo mới nó và bắt đầu
+                    countdownTimer = new CustomCountdownTimer(mStartTimerInMilis, 1000, mTimeCountdown, countdownProBar);
+                    //drag movement for widget
+                    countdownTimer.start();
+
+                    FloatingViewTouchListener touchListener = new FloatingViewTouchListener(params, getmWindowManager(), countdownTimer);
+                    mFloatingView.setOnTouchListener(touchListener);
 
 
 
